@@ -1,6 +1,7 @@
 let xmlHttpRequest = require('xmlhttprequest')
 
 function fetchData(url_api, callback){
+    console.log('modificando')
     let xhttp = new xmlHttpRequest()
     xhttp.open('GET', url_api, true) //method, url, asincronismo true
     xhttp.onreadystatechange = function (event){

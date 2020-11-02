@@ -29,26 +29,31 @@
 
 
         const processAverage = (data) => {
-            let add = 0
-            let count = 0
+
+            let addEast = 0,
+            addWest = 0
+            let count1 = 0,
+            count2 = 0
                 data.map(x => {
                     if (x.school === 'east'){
                         x.score
-                        add += x.score
-                        count++
+                        addEast += x.score
+                        count1++
                
                     }
                     if (x.school === 'west'){
                         x.score
-                        add += x.score
-                        count++
+                        addWest += x.score
+                        count2++
                     }
                     
                 })
             
             return function average(info){
                 console.log(info)
-                console.log('the total points between them is: ' + ' ' + add + ' ' + 'and they are: ' + ' ' + count + ' ' + 'of them')
+                // console.log('the total points between them is: ' + ' ' + add + ' ' + 'and they are: ' + ' ' + count + ' ' + 'of them')
+                console.log('the total points from East School: ' + ' ' + addEast + ' ' + 'and they are: ' + ' ' + count1 + ' ' + 'of them')
+                console.log('the total points from West School: ' + ' ' + addWest + ' ' + 'and they are: ' + ' ' + count2 + ' ' + 'of them')
 
             }
 
