@@ -23,9 +23,17 @@ fetchData(api, function(error1,data1){
         if (error2) return console.error(error2)
         fetchData(data2.origin.url, function(error3,data3){
             if (error3) return console.error(error3)
-            console.log(data1.info.count)
-            console.log(data2.name)
-            console.log(data3.dimension)
+            fetchData(data3.residents[0],function(error4,data4) {
+                if (error4) return console.error(error4)
+                console.log(data1.info.count)
+                console.log(data2.name)
+                console.log(data3.dimension)
+                console.log(data3.type)
+                console.log(data3.created)
+                console.log(data4.species)
+                console.log(data4.gender)
+            })
+            
         })
     })
 })
@@ -40,6 +48,25 @@ fetchData(api, function(error1,data1){
 // let xmlHttpRequest = require('xmlhttprequest').XMLHttpRequest
 // let api = 'https://rickandmortyapi.com/api/character/'
 
+
+
+// const fetchSpecies = (urlSpe) => {
+//     let xxx = new xmlHttpRequest()
+//     xxx.open('GET', urlSpe , true)
+//     xxx.onreadystatechange = function (event){
+//         if (xxx.readyState === 4){
+//             if (xxx.status === 200){
+//                 const result = JSON.parse(xxx.responseText)
+//                 console.log(result.species)
+            
+//             }else{
+//                 const error = new Error('Error' + urlSpe)
+//             }
+//         }      
+//     }
+//     xxx.send()
+// }
+
 // const finalFetch = (finalApiUrl) => {
 //     let xhttp = new xmlHttpRequest()
 //     xhttp.open('GET', finalApiUrl, true) //method, url, asincronismo true
@@ -48,6 +75,10 @@ fetchData(api, function(error1,data1){
 //             if (xhttp.status === 200){
 //                 const result = JSON.parse(xhttp.responseText)
 //                 console.log(result.dimension)
+//                 console.log(result.type)
+//                 console.log(result.residents[0])
+//                 console.log(result.created)
+//                 fetchSpecies(result.residents[0])
 //             } else {
 //                 const error = new Error('Error' + finalApiUrl)
 //             }
@@ -61,6 +92,7 @@ fetchData(api, function(error1,data1){
 //     console.log(data.info.count)
 //     console.log(data.results[0].name)
 //     let apiDim = data.results[0].origin.url
+//     // let apiRes = data.results[0].origin.url
 //     finalFetch(apiDim)
 // }
 
