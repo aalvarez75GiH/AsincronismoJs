@@ -1,30 +1,6 @@
 let xmlHttpRequest = require('xmlhttprequest').XMLHttpRequest
 let api = 'https://rickandmortyapi.com/api/character/'
 
-const finalFetch = (finalApiUrl) => {
-    let xhttp = new xmlHttpRequest()
-    xhttp.open('GET', finalApiUrl, true) //method, url, asincronismo true
-    xhttp.onreadystatechange = function (event){
-        if (xhttp.readyState === 4){
-            if (xhttp.status === 200){
-                const result = JSON.parse(xhttp.responseText)
-                console.log(result.dimension)
-            } else {
-                const error = new Error('Error' + finalApiUrl)
-            }
-        }
-    }
-    xhttp.send()
-}
-
-const callback = (error,data) => {
-    if (error) return console.error(error)
-    console.log(data.info.count)
-    console.log(data.results[0].name)
-    let apiDim = data.results[0].origin.url
-    finalFetch(apiDim)
-}
-
 function fetchData(url_api, callback){
     let xhttp = new xmlHttpRequest()
     xhttp.open('GET', url_api, true) //method, url, asincronismo true
@@ -41,11 +17,52 @@ function fetchData(url_api, callback){
     xhttp.send()
 } 
 
-fetchData(api, callback)
+fetchData(api, function(error1,data1){
+    if (error1) return console.error(error1)
+    fetchData(api + data1.results[0].id,function(error2,data2){
+        if (error2) return console.error(error2)
+        fetchData(data2.origin.url, function(error3,data3){
+            if (error3) return console.error(error3)
+            console.log(data1.info.count)
+            console.log(data2.name)
+            console.log(data3.dimension)
+        })
+    })
+})
 
 
+
+
+
+
+
+// API con xmlHTTPRequest --- mi version ----------------------
 // let xmlHttpRequest = require('xmlhttprequest').XMLHttpRequest
 // let api = 'https://rickandmortyapi.com/api/character/'
+
+// const finalFetch = (finalApiUrl) => {
+//     let xhttp = new xmlHttpRequest()
+//     xhttp.open('GET', finalApiUrl, true) //method, url, asincronismo true
+//     xhttp.onreadystatechange = function (event){
+//         if (xhttp.readyState === 4){
+//             if (xhttp.status === 200){
+//                 const result = JSON.parse(xhttp.responseText)
+//                 console.log(result.dimension)
+//             } else {
+//                 const error = new Error('Error' + finalApiUrl)
+//             }
+//         }
+//     }
+//     xhttp.send()
+// }
+
+// const callback = (error,data) => {
+//     if (error) return console.error(error)
+//     console.log(data.info.count)
+//     console.log(data.results[0].name)
+//     let apiDim = data.results[0].origin.url
+//     finalFetch(apiDim)
+// }
 
 // function fetchData(url_api, callback){
 //     let xhttp = new xmlHttpRequest()
@@ -63,20 +80,7 @@ fetchData(api, callback)
 //     xhttp.send()
 // } 
 
-// fetchData(api, function(error1,data1){
-//     if (error1) return console.error(error1)
-//     fetchData(api + data1.results[0].id,function(error2,data2){
-//         if (error2) return console.error(error2)
-//         fetchData(data2.origin.url, function(error3,data3){
-//             if (error3) return console.error(error3)
-//             console.log(data1.info.count)
-//             console.log(data2.name)
-//             console.log(data3.dimension)
-//         })
-//     })
-// })
-
-
+// fetchData(api, callback)
 
 
 // ***************** Prueba **************************************
