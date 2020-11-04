@@ -1,15 +1,15 @@
     const students = [
         {name: "Arnoldo",score: 40,school: "east"},
-        {name: "Kris",score: 70,school: "west"},
-        {name: "Miguel",score: 30,school: "west"},
-        {name: "Mariangel",score: 100,school: "west"},
-        {name: "Lorelei",score: 90,school: "west"},
-        {name: "Race",score: 50,school: "west"},]
+        {name: "Kris",score: 70,school: "east"},
+        {name: "Miguel",score: 30,school: "east"},
+        {name: "Mariangel",score: 40,school: "west"},
+        {name: "Lorelei",score: 70,school: "west"},
+        {name: "Race",score: 30,school: "west"},]
 
     
         const processStudents = (data) => {
             if (data.school === 'east'){
-                console.log('This data is coming from a Callback Process')
+                
                 if (data.score > 60){
                     console.log('This Student: ' + data.name + ' ' + 'from: '+ ' ' + data.school + ' ' + 'has approved with: ' + data.score + ' ' + ':)')
                 }
@@ -36,22 +36,19 @@
             count2 = 0
                 data.map(x => {
                     if (x.school === 'east'){
-                        x.score
                         addEast += x.score
                         count1++
                
                     }
                     if (x.school === 'west'){
-                        x.score
                         addWest += x.score
                         count2++
                     }
                     
                 })
             
-            return function average(info){
+             return function average(info){
                 console.log(info)
-                // console.log('the total points between them is: ' + ' ' + add + ' ' + 'and they are: ' + ' ' + count + ' ' + 'of them')
                 console.log('the total points from East School: ' + ' ' + addEast + ' ' + 'and they are: ' + ' ' + count1 + ' ' + 'of them')
                 console.log('the total points from West School: ' + ' ' + addWest + ' ' + 'and they are: ' + ' ' + count2 + ' ' + 'of them')
 
@@ -61,6 +58,7 @@
         }
 
     const arrayMap = (data,callback) => {
+        console.log('This data is coming from a Callback Process')
         data.map(x => callback(x))     
     }    
 
