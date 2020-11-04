@@ -1,26 +1,28 @@
 let xmlHttpRequest = require('xmlhttprequest').XMLHttpRequest
 let api = 'https://rickandmortyapi.com/api/character/'
 
-const callback = (error,data) => {
-    if (error) return console.error(error)
-    console.log(data.info.count)
-    console.log(data.results[0].name)
-    // console.log(data.results[0].origin.url)
-    let apiDim = data.results[0].origin.url
+const finalFetch = (finalApiUrl) => {
     let xhttp = new xmlHttpRequest()
-    xhttp.open('GET', apiDim, true) //method, url, asincronismo true
+    xhttp.open('GET', finalApiUrl, true) //method, url, asincronismo true
     xhttp.onreadystatechange = function (event){
         if (xhttp.readyState === 4){
             if (xhttp.status === 200){
                 const result = JSON.parse(xhttp.responseText)
                 console.log(result.dimension)
             } else {
-                const error = new Error('Error' + apiDim)
+                const error = new Error('Error' + finalApiUrl)
             }
         }
     }
-    xhttp.send()    
-    
+    xhttp.send()
+}
+
+const callback = (error,data) => {
+    if (error) return console.error(error)
+    console.log(data.info.count)
+    console.log(data.results[0].name)
+    let apiDim = data.results[0].origin.url
+    finalFetch(apiDim)
 }
 
 function fetchData(url_api, callback){
