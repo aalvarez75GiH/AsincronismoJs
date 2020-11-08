@@ -36,10 +36,8 @@ const fetchData = async(url_api) => {
 
 
 
-window.onload = () => {
-    renderInfo()
-    
-    const f = async() => {
+window.onload = async() => {
+
     try {
         const data = await fetchData(API)
         console.log(data.info.count)
@@ -52,10 +50,6 @@ window.onload = () => {
     }catch (error){
         console.error(error)
     }
-    
-    
-}
-f()
 }
 
 
