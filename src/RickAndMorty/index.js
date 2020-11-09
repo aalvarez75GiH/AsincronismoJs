@@ -1,24 +1,31 @@
 const API = 'https://rickandmortyapi.com/api/character/'
 
+
 const fetchData = async(url_api) => {
     return new Promise((res,rej) =>{
         fetch(url_api) 
         .then(response => response.json())
         .then(x => {
             res(x)
+            
         })
     })
     .catch(err => console.error(err))
 }
 
 const fetchDimension = async(url) => {
+    var prueba = 'whatever'
+    console.log(prueba)
     return new Promise((res,rej) =>{
         fetch(url) 
         .then(response => response.json())
         .then(x => {
             console.log('the dimension is: ', x.dimension)
-            //res(x)
-            res (`${x.dimension}`)
+            prueba = x.dimension
+            console.log('this is prueba: ',prueba)
+            
+            res (prueba)
+            //return (console.log('bla bla ', `${x.dimension}`))
         })
     })
     .catch(err => console.error(err))
@@ -29,7 +36,6 @@ const renderElement = async(data) => {
     console.log(app)
     const characterView = document.getElementById('character-view')
     console.log(characterView)
-  
     // const character = await fetchData(API)
     console.log(data.results)
     const html = data.results.map(x =>    
@@ -46,7 +52,7 @@ const renderElement = async(data) => {
                         ${x.name}
                     </li>
                     <li>
-                   ${fetchDimension(x.origin.url).then(x => console.log(x))}
+                        ${x.species}
                     </li>
                 </ul>
             </div>`   
@@ -79,3 +85,4 @@ window.onload = () => {
 // ${fetchDimension(x.origin.url)
 //     .then(x => console.log('the unknown dimension is: ',x))}
 //${console.log(`Something is ${fetchDimension(x.origin.url).then(x => console.log(x))}`)}
+//.then(x => console.log('test test ', x.toString()))}
