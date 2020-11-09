@@ -11,54 +11,53 @@ const fetchData = async(url_api) => {
     .catch(err => console.error(err))
 }
 
+const renderElement = (count,name,pic,dimension) => {
+    const app = document.getElementById('app')
+    console.log(app)
+    const characterView = document.getElementById('character-view')
+    console.log(characterView)
+    characterView.innerHTML =
+        
+    `<div id="container">
+        <ul id="character-info">
+            <div class="character">
+                <img src="${pic}" alt="" />
+            </div>
+            <li>
+                ${count}
+            </li>
+            <li>
+                ${name}
+            </li>
+            <li>
+                ${dimension}
+            </li>
+        </ul>
+    </div>`
+    
+    document.getElementById('app').innerHTML = characterView.innerHTML
+}
+
+
 const renderInfo = async(data) => {
     try {
         const data = await fetchData(API)
-        console.log(data.info.count)
+        const count = data.info.count 
         const characterId = await fetchData(`${API}${data.results[2].id}`)
-        console.log(characterId.name)
-        console.log(characterId.image)
+        const name = characterId.name
+        const pic = characterId.image
         const origin = await fetchData(characterId.origin.url)
-        console.log(origin.dimension)
-        // const image = await fetchData(characterId.image)
-        // console.log(image)
+        const dimension = origin.dimension 
+        
+       
 
         // ********************************************************
-        const app = document.getElementById('app')
-        console.log(app)
-        const characterView = document.getElementById('character-view')
-        console.log(characterView)
-        // const node = document.createElement("DIV")
-        // node.classList.add("character")
-        //const test2 = characterView.appendChild(node)
-        //console.log(test2)
-        characterView.innerHTML =
-        
-        `<div id="container">
-            <ul id="character-info">
-                <div class="character">
-                    <img src="${characterId.image}" alt="" />
-                </div>
-                <li>
-                    ${data.info.count}
-                </li>
-                <li>
-                    ${characterId.name}
-                </li>
-                <li>
-                    ${origin.dimension.name}
-                </li>
-            </ul>
-        </div>`
-        
-        document.getElementById('app').innerHTML = characterView.innerHTML
-            
+        renderElement(count,name,pic,dimension)
+                    
     }catch (error){
         console.error(error)
     }
 
-    // const button = document.getElementById('btn')
-    // console.log(button)
 }
 
 window.onload = () => {
