@@ -11,7 +11,7 @@ const fetchData = async(url_api) => {
     .catch(err => console.error(err))
 }
 
-const renderElement = (count,name,pic,dimension) => {
+const renderElement = (info) => {
     const app = document.getElementById('app')
     console.log(app)
     const characterView = document.getElementById('character-view')
@@ -25,16 +25,16 @@ const renderElement = (count,name,pic,dimension) => {
     `<div id="container">
         <ul id="character-info">
             <div class="characterPic">
-                <img src="${pic}" alt="" />
+                <img src="${info.pic}" alt="" />
             </div>
             <li>
-                ${count}
+                ${info.count}
             </li>
             <li>
-                ${name}
+                ${info.name}
             </li>
             <li>
-                ${dimension}
+                ${info.dimension}
             </li>
         </ul>
     </div>`
@@ -52,13 +52,16 @@ const renderInfo = async() => {
         
         const data = await fetchData(API)
         const results = data.results
-        const count = data.info.count 
         const characterId = await fetchData(`${API}${data.results[0].id}`)
-        const name = characterId.name
-        const pic = characterId.image
         const origin = await fetchData(characterId.origin.url)
-        const dimension = origin.dimension  
-        const why = results.map(x => renderElement(count,name,pic,dimension))
+        
+        const info = {
+            count:data.info.count,
+            name: characterId.name,
+            pic: characterId.image,
+            dimension:origin.dimension,
+        }  
+        const why = results.map(x => renderElement(info))
        
                     
     }catch (error){
