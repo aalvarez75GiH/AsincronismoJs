@@ -1,29 +1,5 @@
 const API = 'https://rickandmortyapi.com/api/character/'
 
-
-const renderInfo = (data) => {
-        const characterView = document.getElementById('character-view')
-        console.log(characterView)
-        document.getElementById('app').innerHTML = characterView.innerHTML
-
-        const character = document.getElementById('character')
-        console.log(character)
-        const charList = document.getElementById('char-list')
-        console.log(charList)
-        charList.innerHTML = '<li>'+ data + '</li>';
-        // entryMealBtn.setAttribute('disabled', true)
-        // const token = localStorage.getItem('token')
-        // const mealsView = document.getElementById('meals-view');
-        // document.getElementById('app').innerHTML = mealsView.innerHTML
-        // const sendMealBtn =  document.getElementById('send-meal')
-    
-    
-    
-    
-    // const button = document.getElementById('btn')
-    // console.log(button)
-}
-
 const fetchData = async(url_api) => {
     return new Promise((res,rej) =>{
         fetch(url_api) 
@@ -31,25 +7,63 @@ const fetchData = async(url_api) => {
         .then(x => {
             res(x)
         })
-})
+    })
+    .catch(err => console.error(err))
 }
 
-
-
-window.onload = async() => {
-
+const renderInfo = async(data) => {
     try {
         const data = await fetchData(API)
         console.log(data.info.count)
-        renderInfo(data.info.count)
-        const character = await fetchData(`${API}${data.results[0].id}`)
-        console.log(character.name)
-        const origin = await fetchData(character.origin.url) 
+        const characterId = await fetchData(`${API}${data.results[0].id}`)
+        console.log(characterId.name)
+        console.log(characterId.image)
+        const origin = await fetchData(characterId.origin.url)
         console.log(origin.dimension)
+        // const image = await fetchData(characterId.image)
+        // console.log(image)
+
+        // ********************************************************
+        const app = document.getElementById('app')
+        console.log(app)
+        const characterView = document.getElementById('character-view')
+        console.log(characterView)
+        // const node = document.createElement("DIV")
+        // node.classList.add("character")
+        //const test2 = characterView.appendChild(node)
+        //console.log(test2)
+        characterView.innerHTML =
         
+        `<div id="container">
+            <ul id="character-info">
+                <div class="character">
+                    <img src="${characterId.image}" alt="" />
+                </div>
+                <li>
+                    ${data.info.count}
+                </li>
+                <li>
+                    ${characterId.name}
+                </li>
+                <li>
+                    ${origin.dimension.name}
+                </li>
+            </ul>
+        </div>`
+        
+        document.getElementById('app').innerHTML = characterView.innerHTML
+            
     }catch (error){
         console.error(error)
     }
+
+    // const button = document.getElementById('btn')
+    // console.log(button)
+}
+
+window.onload = () => {
+    renderInfo()
+
 }
 
 
