@@ -48,10 +48,6 @@ const renderInfo = async(data) => {
         const pic = characterId.image
         const origin = await fetchData(characterId.origin.url)
         const dimension = origin.dimension 
-        
-       
-
-        // ********************************************************
         renderElement(count,name,pic,dimension)
                     
     }catch (error){
