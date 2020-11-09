@@ -11,6 +11,19 @@ const fetchData = async(url_api) => {
     .catch(err => console.error(err))
 }
 
+const fetchDimension = async(url) => {
+    return new Promise((res,rej) =>{
+        fetch(url) 
+        .then(response => response.json())
+        .then(x => {
+            console.log('the dimension is: ', x.dimension)
+            //res(x)
+            res (`${x.dimension}`)
+        })
+    })
+    .catch(err => console.error(err))
+}
+
 const renderElement = async(data) => {
     const app = document.getElementById('app')
     console.log(app)
@@ -19,7 +32,8 @@ const renderElement = async(data) => {
   
     // const character = await fetchData(API)
     console.log(data.results)
-    const html = data.results.map(x => 
+    const html = data.results.map(x =>    
+        // console.log(data.results.origin)
                 `<div id="container">
                 <ul id="character-info">
                     <div class="characterPic">
@@ -32,16 +46,14 @@ const renderElement = async(data) => {
                         ${x.name}
                     </li>
                     <li>
-                        ${x.dimension}
+                   ${fetchDimension(x.origin.url).then(x => console.log(x))}
                     </li>
                 </ul>
             </div>`   
-    )
+    )    
     app.innerHTML = html.join('')
-    
-}
 
-            
+}           
 
 
 
@@ -62,3 +74,8 @@ window.onload = () => {
 }
 
 
+
+//.then(x => console.log('this is a test: ', x))}
+// ${fetchDimension(x.origin.url)
+//     .then(x => console.log('the unknown dimension is: ',x))}
+//${console.log(`Something is ${fetchDimension(x.origin.url).then(x => console.log(x))}`)}
