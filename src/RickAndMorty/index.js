@@ -15,7 +15,7 @@ const renderInfo = async(data) => {
     try {
         const data = await fetchData(API)
         console.log(data.info.count)
-        const characterId = await fetchData(`${API}${data.results[0].id}`)
+        const characterId = await fetchData(`${API}${data.results[2].id}`)
         console.log(characterId.name)
         console.log(characterId.image)
         const origin = await fetchData(characterId.origin.url)
