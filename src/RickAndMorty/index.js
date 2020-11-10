@@ -7,7 +7,6 @@ const fetchData = async(url_api) => {
         .then(response => response.json())
         .then(x => {
             res(x)
-            
         })
     })
     .catch(err => console.error(err))
@@ -31,7 +30,8 @@ const fetchDimension = async(url) => {
     .catch(err => console.error(err))
 }
 
-const renderElement = async(data) => {
+const renderElement = async(data,dim) => {
+    console.log('Dimension coming: ' ,dim)
     const app = document.getElementById('app')
     console.log(app)
     const characterView = document.getElementById('character-view')
@@ -52,7 +52,7 @@ const renderElement = async(data) => {
                         ${x.name}
                     </li>
                     <li>
-                        ${x.species}
+                        ${dim}
                     </li>
                 </ul>
             </div>`   
@@ -65,14 +65,31 @@ const renderElement = async(data) => {
 
 const renderInfo = async() => {
     
-    try {
+    //try {
         const data = await fetchData(API)
-        renderElement(data)             
-    }catch (error){
-        console.error(error)
-    }
-
+        const newData = data.results.map(x => {
+            //console.log(x)
+            console.log(x.origin.url)
+            if (x.origin.url){
+                //console.log('No todos tienen URL')
+                fetch(x.origin.url)
+                .then(x => x.json())
+                .then(x => {
+                    console.log(x.dimension)
+                    const dim = x.dimension
+                    console.log('this is dim: ', dim)
+                    renderElement(data, dim)
+                })
+                
+                  
+            }
+            
+            
+        })
+    //}
+    
 }
+
 
 window.onload = () => {
     renderInfo()
