@@ -19,7 +19,7 @@ function fetchData(url_api, callback){
 
 fetchData(api, function(error1,data1){
     if (error1) return console.error(error1)
-    fetchData(api + data1.results[0].id,function(error2,data2){
+    fetchData(api + data1.results[2].id,function(error2,data2){
         if (error2) return console.error(error2)
         fetchData(data2.origin.url, function(error3,data3){
             if (error3) return console.error(error3)
