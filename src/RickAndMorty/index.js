@@ -1,5 +1,5 @@
 const API = 'https://rickandmortyapi.com/api/character/'
-let arr = []
+let array = []
 
 
 const fetchData = async(url_api) => {
@@ -13,63 +13,19 @@ const fetchData = async(url_api) => {
     .catch(err => console.error(err))
 }
 
-// const testFunct = (url) => {
-//     //return valor
-//     return new Promise((res,rej) =>{      
-//      fetch(url) 
-//      .then(response => response.json())
-//      .then(x => {
-//          console.log(x)
-//          res(x)
-//     })
-// })
-// }
-function test(url) {
-    //return valor
-    fetch(url) 
-     .then(response => response.json())
-     .then(x => {
-         console.log(x.dimension)
-         return ''
-})
-}
-// const renderElement = async(data) => {
-//     const app = document.getElementById('app')
-//     const characterView = document.getElementById('character-view')
-    
-//         console.log(data.results[0].id)
-//         testFunct(data.results[0].origin.url)
-//         .then(x => {
-//         console.log(x.dimension)
-//         dimension = x.dimension
-//         const html = data.results.map(x =>
-//             `<div id="container">
-//                 <ul id="character-info">
-//                      <div class="characterPic">
-//                         <img src="${x.image}" alt="" />
-//                      </div>
-//                      <li>
-//                         ${x.gender}
-//                      </li>
-//                      <li>
-//                         ${x.name}
-//                      </li>
-//                      <li>
-//                         ${x.origin.url}
-//                      </li>
-                     
-//                 </ul>
-//             </div>`   
-//         )    
-//         app.innerHTML = html.join('')
-//     })    
-// }           
+var num = 15;
+var a = num.toString();
 
+const toStrinG = (dimension) => {
+    var dim = dimension
+    console.log(dim)
+    return dim  
+}
 const renderElement = async(data) => {
+        array = data.results
         const app = document.getElementById('app')
         const characterView = document.getElementById('character-view')
-                
-            console.log(data.results.map(x => x.origin.url))
+                                
             html = data.results.map(x =>
                    
                 `<div id="container">
@@ -84,7 +40,7 @@ const renderElement = async(data) => {
                             ${x.name}
                          </li>
                          <li>
-                            
+                            ${toStrinG(x.origin.url)}
                          </li>
                          
                     </ul>
