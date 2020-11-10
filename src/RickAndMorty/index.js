@@ -1,5 +1,5 @@
 const API = 'https://rickandmortyapi.com/api/character/'
-
+const APID = 'https://rickandmortyapi.com/api/location/1/'
 
 const fetchData = async(url_api) => {
     return new Promise((res,rej) =>{
@@ -30,8 +30,25 @@ const fetchDimension = async(url) => {
     .catch(err => console.error(err))
 }
 
-const renderElement = async(data,dim) => {
-    console.log('Dimension coming: ' ,dim)
+const testFunct = (url) => {
+    //return valor
+    return new Promise((res,rej) =>{      
+     fetch(url) 
+     .then(response => response.json())
+     .then(x => {
+         console.log(x.dimension)
+         res(x.dimension)
+    })
+     
+})
+}
+
+
+   
+
+
+const renderElement = async(data,dimensionX) => {
+    console.log('Dimension coming: ' , dimensionX)
     const app = document.getElementById('app')
     console.log(app)
     const characterView = document.getElementById('character-view')
@@ -52,7 +69,10 @@ const renderElement = async(data,dim) => {
                         ${x.name}
                     </li>
                     <li>
-                        ${dim}
+                        ${dimensionX}
+                    </li>
+                    <li>
+                    
                     </li>
                 </ul>
             </div>`   
@@ -68,26 +88,18 @@ const renderInfo = async() => {
     //try {
         const data = await fetchData(API)
         const newData = data.results.map(x => {
-            //console.log(x)
             console.log(x.origin.url)
-            if (x.origin.url){
-                //console.log('No todos tienen URL')
-                fetch(x.origin.url)
-                .then(x => x.json())
-                .then(x => {
-                    console.log(x.dimension)
-                    const dim = x.dimension
-                    console.log('this is dim: ', dim)
-                    renderElement(data, dim)
-                })
+            testFunct(x.origin.url)
+            .then(x => {
+                const dimensionX = x
                 
-                  
-            }
+                //if (x.origin.url){
+                    renderElement(data, dimensionX)
+                //}
+            })
             
             
-        })
-    //}
-    
+        })    
 }
 
 
