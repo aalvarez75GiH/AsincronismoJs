@@ -3,17 +3,16 @@ body{
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
 #app {
-    width:auto;
+    display: flex;
+    justify-content: space-between;
+    width: auto;
     height: auto;
     background-color: red;
 }
 
 #container {
-    /* display: flex;
-    justify-content: space-between; */
-    align-content: flex-start;
     width:320px;
-    height: 410px;
+    height: auto;
     background-color: aqua;
 }
 
