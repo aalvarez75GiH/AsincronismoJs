@@ -32,11 +32,11 @@ const stringToHtml = (s) => {
 const superNice = async() => {
     const app = document.getElementById('app')
     const characterView = document.getElementById('character-view')
-
     const data = await fetchData(API)
-    console.log(data.results)
+    
+    
     for (i = 0; i < 20  ; i++){
-       
+        
         const getData = await fetchData(`${API}${data.results[i].id}`)
         if(getData.origin.url === "" && getData.location.url === "" ){
             const message = 'NO Dimension'
@@ -119,50 +119,10 @@ const superNice = async() => {
                 // `<li>${getData.name}${getData.gender}</li>`)
             
             document.body.appendChild(elemento)
-
     } 
-
-    
-
 }
         
 }
-
-// ****************Under Construccion ***************************************
-
-const renderElement = async(data) => {
-    const app = document.getElementById('app')
-    const characterView = document.getElementById('character-view')
-    
-    const handleErrors = (response) => {
-        if (!response.ok) console.error(`${response.status}: ${response.statusText}`);
-        return response.json();
-      }
-
-    fetch(API)
-    .then(handleErrors)
-    .then(({ results }) => {
-      const html = results.map(x =>
-           `<div id="container">
-                <ul id="character-info">
-                    <div class="characterPic">
-                        <img src="${x.image}" alt="" />
-                    </div>
-                    <li>
-                        ${x.gender}
-                    </li>
-                    <li>
-                        ${x.name}
-                    </li>
-                    <li>
-                         
-                    </li>
-                </ul>
-            </div>` 
-      )
-      app.innerHTML = html.join('')
-})
-}    
 
 const renderApp = async() => {
     try{
