@@ -60,13 +60,17 @@ h1{
 #liDim{
     background-color: #f1ffe7;
 }
-.characterPic{
+#characterPic{
     background-color: #fff;
     width: 300px;
     height: 300px;
 
 }
 
+#characterPic:hover{
+    cursor: pointer;
+ 
+}
 #character-info li{
     list-style: none;
 }

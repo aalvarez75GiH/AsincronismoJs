@@ -22,7 +22,7 @@ const stringToHtml = (s) => {
     return doc.body.firstChild;
 
 }
-const foo = async(getData) => {
+const renderElements = async(getData) => {
     
     
          if (getData.origin.url != "" && getData.location.url != ""){
@@ -31,8 +31,8 @@ const foo = async(getData) => {
                 
                 `<div id="container">
                     <ul id="character-info">
-                        <div class="characterPic">
-                            <img src="${getData.image}" alt="" />
+                        <div id="characterPic">
+                            <img id="idPics" src="${getData.image}" alt=""/>
                         </div>
                         <li id="liName">
                         ${getData.name}
@@ -57,8 +57,8 @@ const foo = async(getData) => {
             
             `<div id="container">
                 <ul id="character-info">
-                    <div class="characterPic">
-                        <img src="${getData.image}" alt="" />
+                    <div id="characterPic">
+                        <img src="${getData.image}" alt=""/>
                     </div>
                     <li id="liName">
                     ${getData.name}
@@ -81,28 +81,35 @@ const foo = async(getData) => {
 
 
 
-const superNice = async() => {
+const controlRender = async() => {
     
     const app = document.getElementById('app')
     const characterView = document.getElementById('character-view')
     const data = await fetchData(API)
-    console.log(data)
     
-    
-           
-        const mapData = await Promise.all(data.results.map(async i => {
-            await foo(i)
+    const mapData = await Promise.all(data.results.map(async i => {
+            await renderElements(i)
             return i
         }))
 }
-               
-const testingBtn = () => {
-alert('testing some shits')
+         
+
+const testingFunctions = () => {
+alert('testing some shits and some Functions')
 }
+
+
+const actionBtn = () => {
+    const btn = document.getElementById('btn')
+    console.log(btn)
+    btn.addEventListener("click",testingFunctions)
+
+}
+
 
 const renderApp = async() => {
     try{
-        await superNice()
+        await controlRender()
         
     }catch(error){
         console.error(error)
@@ -111,8 +118,6 @@ const renderApp = async() => {
 
 window.onload = () => {
     renderApp()
-    const btn = document.getElementById('btn')
-    console.log(btn)
-    btn.addEventListener("click",testingBtn)
-
+    actionBtn()
+    
 }
