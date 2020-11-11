@@ -66,10 +66,10 @@ const foo = async(getData) => {
                     <li id="liGender">
                         ${getData.gender}
                     </li>
-                    <li <li id="liDim">>
+                    <li <li id="liDim">
                     ${location.dimension}
                     </li>
-                </ul>
+                </ul>   
             </div>` 
             
             
@@ -96,7 +96,9 @@ const superNice = async() => {
         }))
 }
                
-
+const testingBtn = () => {
+alert('testing some shits')
+}
 
 const renderApp = async() => {
     try{
@@ -109,5 +111,8 @@ const renderApp = async() => {
 
 window.onload = () => {
     renderApp()
+    const btn = document.getElementById('btn')
+    console.log(btn)
+    btn.addEventListener("click",testingBtn)
 
 }
