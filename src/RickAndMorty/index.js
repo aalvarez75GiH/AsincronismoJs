@@ -12,7 +12,6 @@ const fetchData = async(url_api) => {
     })
     .catch(err => console.error(err))
 }
-
 // const renderInfo = async(data) => {
 //     const app = document.getElementById('app')
 //     const characterView = document.getElementById('character-view')
@@ -21,12 +20,12 @@ const fetchData = async(url_api) => {
 
 
 // ****************Under Construccion ***************************************
-const stringToHtml = (s) => { //8
+const stringToHtml = (s) => { 
 
-    const parser = new DOMParser();//9
+    const parser = new DOMParser();
     const doc = parser.parseFromString(s, 'text/html');
     //10
-    return doc.body.firstChild; //11
+    return doc.body.firstChild;
 
 }
 
@@ -36,47 +35,99 @@ const superNice = async() => {
 
     const data = await fetchData(API)
     console.log(data.results)
-    for (i = 0; i < 20; i++){
+    for (i = 0; i < 20  ; i++){
        
         const getData = await fetchData(`${API}${data.results[i].id}`)
-        const origin = await fetchData(getData.origin.url)
-        console.log(getData.image)
-        console.log(getData.gender)
-        console.log(getData.name)
-        console.log(origin.dimension)
-        const elemento = stringToHtml(
+        if(getData.origin.url === "" && getData.location.url === "" ){
+            const message = 'NO Dimension'
+            //console.log(getData.id)
+            const elemento = stringToHtml(
+                
+                `<div id="container">
+                    <ul id="character-info">
+                        <div class="characterPic">
+                            <img src="${getData.image}" alt="" />
+                        </div>
+                        <li>
+                        ${getData.name}
+                        </li>
+                        <li>
+                            ${getData.gender}
+                        </li>
+                        <li>
+                            ${message}
+                        </li>
+                    </ul>
+                </div>` 
+                
+                
+            )
+            document.body.appendChild(elemento)
+        }
+        
+        if (getData.origin.url != ""){
+            const origin = await fetchData(getData.origin.url)
+            const elemento = stringToHtml(
+                
+                `<div id="container">
+                    <ul id="character-info">
+                        <div class="characterPic">
+                            <img src="${getData.image}" alt="" />
+                        </div>
+                        <li>
+                        ${getData.name}
+                        </li>
+                        <li>
+                            ${getData.gender}
+                        </li>
+                        <li>
+                        ${origin.dimension}
+                        </li>
+                    </ul>
+                </div>` 
+                
+                
+            )
             
-            `<div id="container">
-                <ul id="character-info">
-                    <div class="characterPic">
-                        <img src="${getData.image}" alt="" />
-                    </div>
-                    <li>
-                    ${getData.name}
-                    </li>
-                    <li>
-                        ${getData.gender}
-                    </li>
-                    <li>
-                    ${origin.dimension}
-                    </li>
-                </ul>
-            </div>` 
-            
-            
-        )
-            // `<li>${getData.name}${getData.gender}</li>`)
-        
-        
-        
-        
-        
-        console.log(elemento)
         document.body.appendChild(elemento)
-
+        
     }
+        if (getData.location.url != ""){
+
+            const location = await fetchData(getData.location.url)
+            const elemento = stringToHtml(
+                
+                `<div id="container">
+                    <ul id="character-info">
+                        <div class="characterPic">
+                            <img src="${getData.image}" alt="" />
+                        </div>
+                        <li>
+                        ${getData.name}
+                        </li>
+                        <li>
+                            ${getData.gender}
+                        </li>
+                        <li>
+                        ${location.dimension}
+                        </li>
+                    </ul>
+                </div>` 
+                
+                
+            )
+                // `<li>${getData.name}${getData.gender}</li>`)
+            
+            document.body.appendChild(elemento)
+
+    } 
+
+    
+
 }
-superNice()
+        
+}
+
 // ****************Under Construccion ***************************************
 
 const renderElement = async(data) => {
@@ -115,6 +166,7 @@ const renderElement = async(data) => {
 
 const renderApp = async() => {
     try{
+        superNice()
         //renderElement()
     }catch(error){
         console.error(error)
