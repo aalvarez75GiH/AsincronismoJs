@@ -49,7 +49,7 @@ const foo = async(getData) => {
                 
             )
             
-        document.body.appendChild(elemento)
+        app.appendChild(elemento)
         
     }else if(getData.origin.url === "" && getData.location.url != "")  {
         const location = await fetchData(getData.location.url)
@@ -74,7 +74,7 @@ const foo = async(getData) => {
             
             
         )
-        document.body.appendChild(elemento)
+        app.appendChild(elemento)
     }   
 }
     

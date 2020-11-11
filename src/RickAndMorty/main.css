@@ -9,26 +9,14 @@ body{
 }
 
 #container {
-    display: flex;
-    justify-content: space-between;
+    /* display: flex;
+    justify-content: space-between; */
     align-content: flex-start;
-    width:auto;
+    width:320px;
     height: 410px;
     background-color: aqua;
 }
 
-.characterPic{
-    background-color: greenyellow;
-    width: 300px;
-    height: 300px;
-
-}
-
-/* #infoList{
-    width: 70px;
-    height: 70px;
-    background-color: black;
-} */
 #character-info{
     padding: 5px;
     color: white;
@@ -36,12 +24,15 @@ body{
     height: 370px;
     background-color: blue;
 }
+.characterPic{
+    background-color: greenyellow;
+    width: 300px;
+    height: 300px;
+
+}
 
 #character-info li{
-    /* width: 300px;
-    height: 50px; */
     list-style: none;
-
 }
 
 #btn {
