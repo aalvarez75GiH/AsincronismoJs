@@ -4,8 +4,8 @@ body{
 }
 #app {
     display: grid;
-    grid-template-columns: repeat(5, 320px);
-    grid-template-rows: repeat(5, 400px);
+    grid-template: repeat(5, 400px)/repeat(5, 320px);
+    grid-gap: 20px;
     justify-content: space-evenly;
     /* display: flex;
     justify-content: space-between; */
@@ -16,24 +16,46 @@ body{
 
 #container {
     display: flex;
-    border: 2px solid #1a1b41;
-    border-radius: 25px;
+    /* //border: 2px solid #1a1b41;
+    //border-radius: 25px; */
     justify-content: center;
     margin: 50px;
     width:320px;
-    height: 390px;
-    background-color: white;
+    height: 405px;
+    background-color: #fff;
 }
 
 #character-info{
     padding: 5px;
-    color: #1a1b41
+    color: #1a1b41;
     width: 300px;
     height: auto;
-    background-color: white;
+    background-color: #fff;
+}
+
+#character-info li{
+    padding: 2px;
+    text-align: center;
+    
+}
+
+.characterPic img {
+    border-radius: 20px;
+}
+
+#liName{
+    background-color: #6b94c7;
+    margin-top: 5px;
+}
+
+#liGender{
+    background-color: #c2e7da;
+}
+#liDim{
+    background-color: #f1ffe7;
 }
 .characterPic{
-    background-color: greenyellow;
+    background-color: #fff;
     width: 300px;
     height: 300px;
 

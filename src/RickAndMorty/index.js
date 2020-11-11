@@ -34,13 +34,13 @@ const foo = async(getData) => {
                         <div class="characterPic">
                             <img src="${getData.image}" alt="" />
                         </div>
-                        <li>
+                        <li id="liName">
                         ${getData.name}
                         </li>
-                        <li>
+                        <li id="liGender">
                             ${getData.gender}
                         </li>
-                        <li>
+                        <li id="liDim">
                             ${origin.dimension}
                         </li>
                     </ul>
@@ -60,13 +60,13 @@ const foo = async(getData) => {
                     <div class="characterPic">
                         <img src="${getData.image}" alt="" />
                     </div>
-                    <li>
+                    <li id="liName">
                     ${getData.name}
                     </li>
-                    <li>
+                    <li id="liGender">
                         ${getData.gender}
                     </li>
-                    <li>
+                    <li <li id="liDim">>
                     ${location.dimension}
                     </li>
                 </ul>
