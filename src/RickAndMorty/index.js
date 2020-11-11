@@ -13,54 +13,49 @@ const fetchData = async(url_api) => {
     .catch(err => console.error(err))
 }
 
-var num = 15;
-var a = num.toString();
-
-const toStrinG = (dimension) => {
-    var dim = dimension
-    console.log(dim)
-    return dim  
+const renderInfo = async(data) => {
+    console.log(data)
 }
 const renderElement = async(data) => {
         array = data.results
         const app = document.getElementById('app')
         const characterView = document.getElementById('character-view')
-                                
-            html = data.results.map(x =>
-                   
-                `<div id="container">
-                    <ul id="character-info">
-                         <div class="characterPic">
-                            <img src="${x.image}" alt="" />
-                         </div>
-                         <li>
-                            ${x.gender}
-                         </li>
-                         <li>
-                            ${x.name}
-                         </li>
-                         <li>
-                            ${toStrinG(x.origin.url)}
-                         </li>
-                         
-                    </ul>
-                </div>`   
+        html = data.results.map(x =>
+        `<div id="container">
+                <ul id="character-info">
+                    <div class="characterPic">
+                        <img src="${x.image}" alt="" />
+                    </div>
+                    <li>
+                        ${x.gender}
+                    </li>
+                    <li>
+                        ${x.name}
+                    </li>
+                    <li>
+                     
+                    </li>
+                </ul>
+            </div>`   
             )    
             app.innerHTML = html.join('')
 }    
            
     
 
-const renderInfo = async() => {
-    
-    //try {
+const renderApp = async() => {
+    try{
         const data = await fetchData(API)
-        renderElement(data)    
+        renderInfo(data)
+        renderElement(data)
+    }catch(error){
+        console.error(error)
+    }                
 }
 
 
 window.onload = () => {
-    renderInfo()
+    renderApp()
 
 }
 
