@@ -12,19 +12,13 @@ const fetchData = async(url_api) => {
     })
     .catch(err => console.error(err))
 }
-// const renderInfo = async(data) => {
-//     const app = document.getElementById('app')
-//     const characterView = document.getElementById('character-view')
-//     const workData = data.results.map(x => console.log(x))
-// }
 
 
-// ****************Under Construccion ***************************************
+
 const stringToHtml = (s) => { 
 
     const parser = new DOMParser();
     const doc = parser.parseFromString(s, 'text/html');
-    //10
     return doc.body.firstChild;
 
 }
@@ -40,7 +34,6 @@ const superNice = async() => {
         const getData = await fetchData(`${API}${data.results[i].id}`)
         if(getData.origin.url === "" && getData.location.url === "" ){
             const message = 'NO Dimension'
-            //console.log(getData.id)
             const elemento = stringToHtml(
                 
                 `<div id="container">
@@ -116,7 +109,6 @@ const superNice = async() => {
                 
                 
             )
-                // `<li>${getData.name}${getData.gender}</li>`)
             
             document.body.appendChild(elemento)
     } 
@@ -127,7 +119,7 @@ const superNice = async() => {
 const renderApp = async() => {
     try{
         superNice()
-        //renderElement()
+        
     }catch(error){
         console.error(error)
     }                
