@@ -75,34 +75,8 @@ const foo = async(getData) => {
             
         )
         document.body.appendChild(elemento)
-       
-    }else if(getData.origin.url === "" && getData.location.url === ""){
-        const message = 'NO Dimension'
-        const elemento = stringToHtml(
-
-            `<div id="container">
-                <ul id="character-info">
-                    <div class="characterPic">
-                        <img src="${getData.image}" alt="" />
-                    </div>
-                    <li>
-                    ${getData.name}
-                    </li>
-                    <li>
-                        ${getData.gender}
-                    </li>
-                    <li>
-                    ${message}
-                    
-                    </li>
-                </ul>
-            </div>` 
-        )
-        document.body.appendChild(elemento)
-        }
-    
-     
-    }
+    }   
+}
     
 
 
