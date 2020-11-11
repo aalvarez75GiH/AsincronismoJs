@@ -140,9 +140,7 @@ const logOut = () =>{
 const deleteMeal = () => {
     const deleteMealBtn = document.getElementById('deleteBtn')
     deleteMealBtn.setAttribute('disabled', true)
-  
     const token = localStorage.getItem('token')
-    
     const orderForm = document.getElementById('order')
  
     
