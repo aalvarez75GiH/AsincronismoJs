@@ -86,8 +86,10 @@ const controlRender = async() => {
     const app = document.getElementById('app')
     const characterView = document.getElementById('character-view')
     const data = await fetchData(API)
+    array = data
+    console.log(array)
     
-    const mapData = await Promise.all(data.results.map(async i => {
+    const mapArray = await Promise.all(array.results.map(async i => {
             await renderElements(i)
             return i
         }))
@@ -96,7 +98,13 @@ const controlRender = async() => {
 
 const testingFunctions = () => {
 alert('testing some shits and some Functions')
+   
 }
+
+
+// const index = array.results.indexOf(0)
+// console.log(index)
+
 
 
 const actionBtn = () => {
