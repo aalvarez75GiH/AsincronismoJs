@@ -99,8 +99,7 @@ img {
 }
 
 /******************** Responsive Design ***********************/
-
-@media screen and (max-width:2097px){
+@media (max-width:2097px) and (min-width:1570px){
    
     #character-info{
         width: 83%;
@@ -108,12 +107,11 @@ img {
     }
 
     #liName{
-        background-color: #6b94c7;
         margin-top: 0.6%;
     }
 }
 
-@media screen and (max-width:1570px){
+@media (max-width:1569px) and (min-width:1419px){
    
     #character-info{
         width: 83%;
@@ -121,14 +119,54 @@ img {
     }
 
     #liName{
-        background-color: #6b94c7;
-        margin-top: -2%;
+        margin-top: -7%;
+    }
+}
+@media (max-width:1418px) and (min-width:1280px){
+    #app {
+        grid-template: repeat(4, 1fr)/repeat(5, 1fr);
+        grid-template-areas:    "a01 a02 a03 a04 a05"
+        "a06 a07 a08 a09 a10"
+        "a11 a12 a13 a14 a15"
+        "a16 a17 a18 a19 a20";
+}
+     
+    #character-info{
+        width: 81%;
+        
+    }
+
+    #liName{
+        margin-top: -7.4%;
     }
 }
 
-@media screen and (max-width:1280px){
+@media (max-width:1280px) and (min-width:1024px){
     #app {
-        grid-template: repeat(7, 1fr)/repeat(3, 1fr);
+        grid-template: repeat(4, 1fr)/repeat(5, 1fr);
+        grid-template-areas:    "a01 a02 a03 a04 a05"
+                                "a06 a07 a08 a09 a10"
+                                "a11 a12 a13 a14 a15"
+                                "a16 a17 a18 a19 a20";
+}
+    #container {
+        width: 109%;
+    
+    } 
+
+    #character-info{
+        width: 88%;
+        
+    }
+   
+    #liName{
+        margin-top: -10.4%;
+    }
+}
+@media (max-width:1023px) and (min-width:767px){
+    #app {
+        justify-content: space-between;
+       grid-template: repeat(7, 1fr)/repeat(3, 1fr);
         grid-template-areas:    "a01 a02 a03" 
                                 "a04 a05 a06" 
                                 "a07 a08 a09" 
@@ -138,19 +176,21 @@ img {
                                 "a19 a20    ";
         }
     #character-info{
-        width: 81%;
+        width: 88%;
         
     }
-
+    #container {
+        width: 86%;
+     
+    }
     #liName{
-        margin-top: 0.6%;
+        margin-top: -0.4%;
     }
 }
 
-@media screen and (max-width:1024px){
-    #app {
-        justify-content: space-between;
-        grid-template: repeat(10, 9.40%)/repeat(2, 56.4%);
+@media screen and (max-width:768px){
+    #app{
+        grid-template: repeat(10, 9.40%)/repeat(2, 49.4%);
         grid-template-areas:    "a01 a02" 
                                 "a03 a04"
                                 "a05 a06"
@@ -161,20 +201,22 @@ img {
                                 "a15 a16"
                                 "a17 a18"
                                 "a19 a20";
-        }
+        padding: 9%;
+    }
     #character-info{
-        width: 69%;
+        width: 88%;
         
     }
     #container {
-        width: 75%;
+        width: 65%;
      
     }
     #liName{
-        margin-top: 1.6%;
+        margin-top: -2.4%;
     }
+
 }
-@media screen and (max-width:768px){
+@media (max-width:767px) and (min-width:413px){
     #app {
         display: flex;
         flex-direction: column;
@@ -186,6 +228,7 @@ img {
     }
     #container {
         margin-top: 15px;
+        margin-right: 20%;
         border:unset;
         border-radius: 5px;
         width: 75%;
@@ -197,16 +240,42 @@ img {
     }
 }
 
-@media screen and (max-width:515px){
+@media (max-width:412px) and (min-width:320px){ 
+    #app {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: auto;
+        }
     #character-info{
-        font-size: 90%;
-        margin-bottom: 4%;
+        width: 52%;
+        
+    }
+    #container {
+        margin-right: 0%;
+        width: 141%;
+     
     }
     #liName{
-        margin-top: -4%;
+        margin-top: 1.2%;
+    }
+
+    #character-info li{
+        font-size: 14px;
+        
+    }
+
+    #characterPic{
+        margin-bottom: -2%;
+    
+    }
+
+    #btn {
+        width: 100%;
+        margin-left: 0%;
+        border: none;
+        font-size: 16px;
+               
     }
 }
 
-@media screen and (max-width:320px){
-
-}
