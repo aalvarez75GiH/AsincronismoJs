@@ -55,7 +55,7 @@ img {
 
 #liName{
     background-color: #6b94c7;
-    margin-top: 5px;
+    margin-top: 0.5%;
 }
 
 #liGender{
@@ -100,6 +100,32 @@ img {
 
 /******************** Responsive Design ***********************/
 
+@media screen and (max-width:2097px){
+   
+    #character-info{
+        width: 83%;
+        
+    }
+
+    #liName{
+        background-color: #6b94c7;
+        margin-top: 0.6%;
+    }
+}
+
+@media screen and (max-width:1570px){
+   
+    #character-info{
+        width: 83%;
+        
+    }
+
+    #liName{
+        background-color: #6b94c7;
+        margin-top: -2%;
+    }
+}
+
 @media screen and (max-width:1280px){
     #app {
         grid-template: repeat(7, 1fr)/repeat(3, 1fr);
@@ -116,9 +142,12 @@ img {
         
     }
 
+    #liName{
+        margin-top: 0.6%;
+    }
 }
 
-@media screen and (max-width:1023px){
+@media screen and (max-width:1024px){
     #app {
         justify-content: space-between;
         grid-template: repeat(10, 9.40%)/repeat(2, 56.4%);
@@ -141,34 +170,15 @@ img {
         width: 75%;
      
     }
+    #liName{
+        margin-top: 1.6%;
+    }
 }
-@media screen and (max-width:767px){
+@media screen and (max-width:768px){
     #app {
         display: flex;
         flex-direction: column;
         align-items: center;
-        /* justify-content: space-between;
-        grid-template: repeat(20, 9.40%)/repeat(1, 56.4%);
-        grid-template-areas:    "a01" 
-                                "a02" 
-                                "a03" 
-                                "a04"
-                                "a05" 
-                                "a06"
-                                "a07" 
-                                "a08"
-                                "a09" 
-                                "a10"
-                                "a11" 
-                                "a12"
-                                "a13" 
-                                "a14"
-                                "a15" 
-                                "a16"
-                                "a17" 
-                                "a18"
-                                "a19" 
-                                "a20"; */
         }
     #character-info{
         width: 52%;
@@ -182,10 +192,19 @@ img {
         height: 53%;
      
     }
+    #liName{
+        margin-top: 1.2%;
+    }
 }
 
 @media screen and (max-width:515px){
-
+    #character-info{
+        font-size: 90%;
+        margin-bottom: 4%;
+    }
+    #liName{
+        margin-top: -4%;
+    }
 }
 
 @media screen and (max-width:320px){
