@@ -2,6 +2,7 @@ const API = 'https://rickandmortyapi.com/api/character/'
 let array = []
 
 
+
 const fetchData = async(url_api) => {
     return new Promise((res,rej) =>{
         fetch(url_api) 
@@ -13,7 +14,7 @@ const fetchData = async(url_api) => {
     .catch(err => console.error(err))
 }
 
-
+{/* <img id="idPics" src="${getData.image}" alt=""/> */}
 
 const stringToHtml = (s) => { 
 
@@ -32,7 +33,8 @@ const renderElements = async(getData) => {
                 `<div id="container">
                     <ul id="character-info">
                         <div id="characterPic">
-                            <img id="idPics" src="${getData.image}" alt=""/>
+                         <img src="${getData.image}" alt=""/>
+                          
                         </div>
                         <li id="liName">
                         ${getData.name}
@@ -58,7 +60,8 @@ const renderElements = async(getData) => {
             `<div id="container">
                 <ul id="character-info">
                     <div id="characterPic">
-                        <img src="${getData.image}" alt=""/>
+                         <img src="${getData.image}" alt=""/> 
+
                     </div>
                     <li id="liName">
                     ${getData.name}
