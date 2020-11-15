@@ -99,7 +99,7 @@ img {
 }
 
 /******************** Responsive Design ***********************/
-@media (max-width:2097px) and (min-width:1570px){
+@media (min-width:1570px) and (max-width:2097px) {
    
     #character-info{
         width: 83%;
@@ -111,8 +111,15 @@ img {
     }
 }
 
-@media (max-width:1569px) and (min-width:1419px){
-   
+@media (min-width:1420px) and (max-width:1569px) {
+    #app {
+        padding: 1%;
+    }
+    #container{
+        margin-bottom: 8%;
+        height: 100%;
+    }
+
     #character-info{
         width: 83%;
         
@@ -122,17 +129,27 @@ img {
         margin-top: -7%;
     }
 }
-@media (max-width:1418px) and (min-width:1280px){
+@media (min-width:1281px) and (max-width:1419px){
     #app {
         grid-template: repeat(4, 1fr)/repeat(5, 1fr);
         grid-template-areas:    "a01 a02 a03 a04 a05"
-        "a06 a07 a08 a09 a10"
-        "a11 a12 a13 a14 a15"
-        "a16 a17 a18 a19 a20";
-}
-     
+                                "a06 a07 a08 a09 a10"
+                                "a11 a12 a13 a14 a15"
+                                "a16 a17 a18 a19 a20";
+    }
+    
+    #container{
+        margin-bottom: 8%;
+        height: 100%;
+    }
+
     #character-info{
         width: 81%;
+        
+    }
+    
+    #character-info li{
+        font-size: 14px;
         
     }
 
@@ -141,21 +158,27 @@ img {
     }
 }
 
-@media (max-width:1280px) and (min-width:1024px){
+@media (min-width:1024px) and (max-width:1280px) {
     #app {
         grid-template: repeat(4, 1fr)/repeat(5, 1fr);
         grid-template-areas:    "a01 a02 a03 a04 a05"
                                 "a06 a07 a08 a09 a10"
                                 "a11 a12 a13 a14 a15"
                                 "a16 a17 a18 a19 a20";
-}
+    padding: 1%;
+    }
     #container {
-        width: 109%;
-    
+        margin-bottom: 8%;
+        height: 96%;
     } 
 
     #character-info{
         width: 88%;
+        
+    }
+
+    #character-info li{
+        font-size: 16px;
         
     }
    
@@ -163,10 +186,11 @@ img {
         margin-top: -10.4%;
     }
 }
-@media (max-width:1023px) and (min-width:767px){
+
+@media (min-width:769px) and (max-width:1023px) {
     #app {
         justify-content: space-between;
-       grid-template: repeat(7, 1fr)/repeat(3, 1fr);
+        grid-template: repeat(7, 1fr)/repeat(3, 1fr);
         grid-template-areas:    "a01 a02 a03" 
                                 "a04 a05 a06" 
                                 "a07 a08 a09" 
@@ -174,6 +198,8 @@ img {
                                 "a13 a14 a15"
                                 "a16 a17 a18" 
                                 "a19 a20    ";
+        grid-gap: 10px;
+        padding: 3%;
         }
     #character-info{
         width: 88%;
@@ -188,9 +214,10 @@ img {
     }
 }
 
-@media screen and (max-width:768px){
+@media (min-width:516px) and (max-width:768px){
     #app{
-        grid-template: repeat(10, 9.40%)/repeat(2, 49.4%);
+        /* grid-template: repeat(10, 9.40%)/repeat(2, 49.4%); */
+        grid-template: repeat(12, 370px)/repeat(2, 49.4%);
         grid-template-areas:    "a01 a02" 
                                 "a03 a04"
                                 "a05 a06"
@@ -201,54 +228,36 @@ img {
                                 "a15 a16"
                                 "a17 a18"
                                 "a19 a20";
-        padding: 9%;
+        padding: 2%;
+        grid-gap: 1%;
     }
+    #container {
+        width: 91%;
+        height: 113%;
+        margin-bottom:1% ;
+     
+    }
+    
     #character-info{
         width: 88%;
         
     }
-    #container {
-        width: 65%;
-     
-    }
+    
     #liName{
         margin-top: -2.4%;
     }
 
 }
-@media (max-width:767px) and (min-width:413px){
-    #app {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        }
-    #character-info{
-        width: 52%;
-        
-    }
-    #container {
-        margin-top: 15px;
-        margin-right: 20%;
-        border:unset;
-        border-radius: 5px;
-        width: 75%;
-        height: 53%;
-     
-    }
-    #liName{
-        margin-top: 1.2%;
-    }
-}
 
-@media (max-width:412px) and (min-width:320px){ 
+@media (min-width:413px) and (max-width:515px) { 
     #app {
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: auto;
+        width: 100%;
         }
     #character-info{
-        width: 52%;
+        width: 41%;
         
     }
     #container {
@@ -256,6 +265,8 @@ img {
         width: 141%;
      
     }
+
+   
     #liName{
         margin-top: 1.2%;
     }
@@ -266,7 +277,54 @@ img {
     }
 
     #characterPic{
-        margin-bottom: -2%;
+        margin-bottom: 1%;
+    
+    }
+
+    #btn {
+        width: 100%;
+        margin-left: 0%;
+        border: none;
+        font-size: 16px;
+               
+    }
+}
+
+@media screen and  (max-width:412px){
+    #app {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        }
+    #character-info{
+        width: 71%;
+        
+    }
+
+    img {
+    min-width: 100% ;  
+  }
+
+    #container {
+        margin-right: 0%;
+        width: 141%;
+     
+    }
+    #liName{
+        margin-top: 1.2%;
+    }
+
+    #character-info li{
+        padding: 6px;
+        font-size: 14px;
+        
+    }
+
+    #characterPic{
+        margin-left: 1%;
+        /* background-color: red; */
+        margin-bottom: 1%;
     
     }
 

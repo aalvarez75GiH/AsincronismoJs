@@ -24,31 +24,27 @@ const stringToHtml = (s) => {
 
 }
 const renderElements = async(getData) => {
-    
-    
-         if (getData.origin.url != "" && getData.location.url != ""){
-            const origin = await fetchData(getData.origin.url)
-            const elemento = stringToHtml(
-                
-                `<div id="container">
-                    <ul id="character-info">
-                        <div id="characterPic">
-                         <img src="${getData.image}" alt=""/>
-                          
-                        </div>
-                        <li id="liName">
-                        ${getData.name}
-                        </li>
-                        <li id="liGender">
-                            ${getData.gender}
-                        </li>
-                        <li id="liDim">
-                            ${origin.dimension}
-                        </li>
-                    </ul>
-                </div>` 
-                
-                
+    if (getData.origin.url != "" && getData.location.url != ""){
+        const origin = await fetchData(getData.origin.url)
+        const elemento = stringToHtml(
+            
+            `<div id="container">
+                <ul id="character-info">
+                    <div id="characterPic">
+                     <img src="${getData.image}" alt=""/>
+                      
+                    </div>
+                    <li id="liName">
+                    ${getData.name}
+                    </li>
+                    <li id="liGender">
+                        ${getData.gender}
+                    </li>
+                    <li id="liDim">
+                        ${origin.dimension}
+                    </li>
+                </ul>
+            </div>`
             )
             
         app.appendChild(elemento)
@@ -94,7 +90,7 @@ const controlRender = async() => {
     
     const mapArray = await Promise.all(array.results.map(async i => {
             await renderElements(i)
-            return i
+            
         }))
 }
          
