@@ -133,17 +133,20 @@ const showId = (id) => {
 }
 
 const deleteChar = (charId,father) => {
-    console.log(father)
+    realId = charId-1
+    console.log(realId)
+    //console.log(father)
     father.classList.add('selected')
-    console.log('Here i am going to delete character#: ', charId)
-    return
-
+    console.log(array.results)
+    console.log(array.results[realId])
+    console.log('Here i am going to delete character#: ', array.results[realId])
+    array.results.splice(realId,1)
+    console.log(array.results)
 }
 
 const clickId = async() => {
     //const testing1 = document.getElementById('btnId17')
     const testing1 = document.querySelectorAll('.classBtn')
-    console.log(testing1)
     testing1.forEach(x => {
         x.parentElement.classList.remove('selected')
         x.addEventListener("click", () => {
