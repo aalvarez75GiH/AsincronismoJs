@@ -34,9 +34,8 @@ h1{
     background-color: #fff;
 }
 
-#app .selected.other {
-    background-color: #3fa27f;
-    border: 8px solid red;
+.selected {
+    border: 4px solid #4375B1;
 } 
 
 

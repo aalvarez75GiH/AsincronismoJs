@@ -134,7 +134,7 @@ const showId = (id) => {
 
 const deleteChar = (charId,father) => {
     console.log(father)
-    father.classList.add('.other')
+    father.classList.add('selected')
     console.log('Here i am going to delete character#: ', charId)
     return
 
@@ -145,6 +145,7 @@ const clickId = async() => {
     const testing1 = document.querySelectorAll('.classBtn')
     console.log(testing1)
     testing1.forEach(x => {
+        x.parentElement.classList.remove('selected')
         x.addEventListener("click", () => {
             deleteChar(x.value,x.parentElement)
             console.log(' Character #: ' + ' ' + x.value + ' ' + 'has been deleted')
