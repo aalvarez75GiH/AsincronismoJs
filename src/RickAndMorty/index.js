@@ -28,7 +28,7 @@ const renderElements = async(getData) => {
         const origin = await fetchData(getData.origin.url)
         const elemento = stringToHtml(
             
-            `<div id="container">
+            `<div id="container" class="selected">
                 <ul id="character-info">
                     <div id="characterPic">
                      <img src="${getData.image}" alt=""/>
@@ -44,6 +44,7 @@ const renderElements = async(getData) => {
                         ${origin.dimension}
                     </li>
                 </ul>
+                <input type="hidden" id="char-id-btn" value="${getData.id}">
             </div>`
             )
             
@@ -53,7 +54,7 @@ const renderElements = async(getData) => {
         const location = await fetchData(getData.location.url)
         const elemento = stringToHtml(
             
-            `<div id="container">
+            `<div id="container" class="selected">
                 <ul id="character-info">
                     <div id="characterPic">
                          <img src="${getData.image}" alt=""/> 
@@ -68,14 +69,24 @@ const renderElements = async(getData) => {
                     <li <li id="liDim">
                     ${location.dimension}
                     </li>
-                </ul>   
+                </ul>
+                <input type="hidden" id="char-id-btn" value="${getData.id}">
             </div>` 
             
             
         )
         app.appendChild(elemento)
-    }   
-}
+    }  
+
+    }
+        // elemento.addEventListener('click',() =>{
+        // const charList = document.getElementById('container'); //3
+        // Array.from(charList.children).forEach(x => x.classList.remove('selected')); //17
+        // elemento.classList.add('selected'); //18
+        // const mealsIdInput = document.getElementById('meals-id-btn');//19
+        // mealsIdInput.value = item._id;//19
+    //return elemento;
+
     
 
 
@@ -92,6 +103,8 @@ const controlRender = async() => {
             await renderElements(i)
             
         }))
+
+       
 }
          
 
@@ -101,22 +114,23 @@ alert('testing some shits and some Functions')
 }
 
 
-// const index = array.results.indexOf(0)
-// console.log(index)
-
-
-
 const actionBtn = () => {
     const btn = document.getElementById('btn')
-    console.log(btn)
     btn.addEventListener("click",testingFunctions)
 
 }
 
+const clickId = () => {
+    // const  charId = document.getElementById('char-id-btn')
+    // return console.log(charId)
+    //btn.addEventListener("click",testingFunctions)
+
+}
 
 const renderApp = async() => {
     try{
         await controlRender()
+         
         
     }catch(error){
         console.error(error)
@@ -126,5 +140,6 @@ const renderApp = async() => {
 window.onload = () => {
     renderApp()
     actionBtn()
+    
     
 }
