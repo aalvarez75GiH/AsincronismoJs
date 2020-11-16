@@ -34,6 +34,13 @@ h1{
     background-color: #fff;
 }
 
+#app .selected.other {
+    background-color: #3fa27f;
+    border: 8px solid red;
+} 
+
+
+
 #character-info{
     padding: 0px;
     color: #1a1b41;

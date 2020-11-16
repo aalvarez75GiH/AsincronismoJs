@@ -15,7 +15,7 @@ const fetchData = async(url_api) => {
 }
 
 {/* <img id="idPics" src="${getData.image}" alt=""/> */}
-
+{/* <input type="hidden" id="char-id-btn" value="${getData.id}"></input> */}
 const stringToHtml = (s) => { 
 
     const parser = new DOMParser();
@@ -44,11 +44,17 @@ const renderElements = async(getData) => {
                         ${origin.dimension}
                     </li>
                 </ul>
-                <input type="hidden" id="char-id-btn" value="${getData.id}">
+                
+                   <button id="btnId${getData.id}" class="classBtn" value="${getData.id}">test</button>
+                
+                
             </div>`
             )
-            
+           
         app.appendChild(elemento)
+
+      
+               
         
     }else if(getData.origin.url === "" && getData.location.url != "")  {
         const location = await fetchData(getData.location.url)
@@ -70,40 +76,36 @@ const renderElements = async(getData) => {
                     ${location.dimension}
                     </li>
                 </ul>
-                <input type="hidden" id="char-id-btn" value="${getData.id}">
+                
+                <button id="btnId${getData.id}" class="classBtn" value="${getData.id}">test</button>
+                
             </div>` 
             
             
         )
         app.appendChild(elemento)
-    }  
+        
+        
+    } 
+       
 
-    }
-        // elemento.addEventListener('click',() =>{
-        // const charList = document.getElementById('container'); //3
-        // Array.from(charList.children).forEach(x => x.classList.remove('selected')); //17
-        // elemento.classList.add('selected'); //18
-        // const mealsIdInput = document.getElementById('meals-id-btn');//19
-        // mealsIdInput.value = item._id;//19
-    //return elemento;
+}
 
-    
-
-
-
+        
+        
 const controlRender = async() => {
     
     const app = document.getElementById('app')
-    const characterView = document.getElementById('character-view')
     const data = await fetchData(API)
     array = data
-    console.log(array)
     
     const mapArray = await Promise.all(array.results.map(async i => {
             await renderElements(i)
+            clickId()
             
-        }))
-
+            
+    }))
+    
        
 }
          
@@ -120,17 +122,41 @@ const actionBtn = () => {
 
 }
 
-const clickId = () => {
-    // const  charId = document.getElementById('char-id-btn')
-    // return console.log(charId)
-    //btn.addEventListener("click",testingFunctions)
+const showId = (id) => {
+   
+    const formId = document.querySelectorAll(`#btnId${id}`)
+     for (var i = 0; i < formId.length; i++) {
+        console.log('buttons' , formId[i]);
+        console.log('Value: ' , formId[i].value);
+    }
+    
+}
 
+const deleteChar = (charId,father) => {
+    console.log(father)
+    father.classList.add('.other')
+    console.log('Here i am going to delete character#: ', charId)
+    return
+
+}
+
+const clickId = async() => {
+    //const testing1 = document.getElementById('btnId17')
+    const testing1 = document.querySelectorAll('.classBtn')
+    console.log(testing1)
+    testing1.forEach(x => {
+        x.addEventListener("click", () => {
+            deleteChar(x.value,x.parentElement)
+            console.log(' Character #: ' + ' ' + x.value + ' ' + 'has been deleted')
+        })
+        console.log(x.value)
+    })
+   
 }
 
 const renderApp = async() => {
     try{
         await controlRender()
-         
         
     }catch(error){
         console.error(error)
@@ -140,6 +166,6 @@ const renderApp = async() => {
 window.onload = () => {
     renderApp()
     actionBtn()
-    
+
     
 }
