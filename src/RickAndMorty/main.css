@@ -10,6 +10,7 @@ h1{
 }
 #app {
     display: grid;
+    margin-left: 0.1%;
     grid-template: repeat(4, 1fr)/repeat(5, 1fr); /* rows - col */
     grid-gap: 20px;
     justify-content: center;
@@ -26,7 +27,7 @@ h1{
 
 
 #container {
-    margin-left: 2px;
+    margin-left: 3%;
     display: flex;
     justify-content: center;
     width: 90%;

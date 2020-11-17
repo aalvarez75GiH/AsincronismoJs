@@ -1,9 +1,6 @@
 const API = 'https://rickandmortyapi.com/api/character/'
 let array = []
 
-
-
-
 const fetchData = async(url_api) => {
     return new Promise((res,rej) =>{
         fetch(url_api) 
@@ -24,7 +21,7 @@ const stringToHtml = (s) => {
 
 }
 
-const concatElem = (ID, image,name,gender,dimension) => {
+const renderElements = (ID, image,name,gender,dimension) => {
     const elemento = stringToHtml(
             
         `<div id="container" class="selected" value="${ID}">
@@ -51,56 +48,14 @@ const concatElem = (ID, image,name,gender,dimension) => {
         )
         app.appendChild(elemento)
 }
-
-const renderElements = async(getData) => {
-    if (getData.origin.url != "" && getData.location.url != ""){
-        const root = await fetchData(getData.origin.url)
-        concatElem(getData.id,getData.image,getData.name,getData.gender,root.dimension)
-    }
-    if(getData.origin.url === "" && getData.location.url != ""){
-             root = await fetchData(getData.location.url)
-             concatElem(getData.id,getData.image,getData.name,getData.gender,root.dimension)
-    }
-        // const elemento = stringToHtml(
-            
-        //     `<div id="container" class="selected" value="${getData.id}">
-            
-        //         <ul id="character-info">
-        //             <div id="characterPic">
-        //                 <img src="${getData.image}" alt=""/>
-        //             </div>
-        //             <li id="liName">
-        //                 ${getData.name}
-        //             </li>
-        //             <li id="liGender">
-        //                 ${getData.gender}
-        //             </li>
-        //             <li id="liDim">
-        //                 ${root.dimension}
-        //             </li>
-        //             <li id="liBtn">
-        //                 <button id="btnId${getData.id}" class="classBtn" value="${getData.id}">Out</button>
-        //             </li>
-        //         </ul>
-                
-        //     </div>`
-        //     )
-           
-        // app.appendChild(elemento)
-} 
-        
-     
-
-
-const testingFunctions = () => {
-    alert('testing some shits and some Functions')
-       
-    }
     
     
 const actionBtn = () => {
     const btn = document.getElementById('btn')
-    btn.addEventListener("click",testingFunctions)
+    btn.addEventListener("click", ()=>{
+        //alert('testing some shits and some Functions')
+        renderApp()
+    })
 
 }
 
@@ -125,18 +80,24 @@ const clickId = () => {
     })
     
 }
-         
-        
+                 
 const controlRender = async() => {
     
     const app = document.getElementById('app')
     const data = await fetchData(API)
     array = data
     
-    const mapArray = await Promise.all(array.results.map(async i => {
-            await renderElements(i)
-            clickId()
-        }))
+    const mapArray = await Promise.all(array.results.map(async getData => {
+        if (getData.origin.url != "" && getData.location.url != ""){
+            const root = await fetchData(getData.origin.url)
+            renderElements(getData.id,getData.image,getData.name,getData.gender,root.dimension)
+        }
+        if(getData.origin.url === "" && getData.location.url != ""){
+            root = await fetchData(getData.location.url)
+            renderElements(getData.id,getData.image,getData.name,getData.gender,root.dimension)
+        }
+        clickId()
+    }))
 }
 
 const renderApp = async() => {
@@ -151,6 +112,4 @@ const renderApp = async() => {
 window.onload = () => {
     renderApp()
     actionBtn()
-
-    
 }
