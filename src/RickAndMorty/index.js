@@ -3,6 +3,7 @@ let array = []
 
 
 
+
 const fetchData = async(url_api) => {
     return new Promise((res,rej) =>{
         fetch(url_api) 
@@ -28,7 +29,7 @@ const renderElements = async(getData) => {
         const origin = await fetchData(getData.origin.url)
         const elemento = stringToHtml(
             
-            `<div id="container" class="selected">
+            `<div id="container" class="selected" value="${getData.id}">
                 <ul id="character-info">
                     <div id="characterPic">
                      <img src="${getData.image}" alt=""/>
@@ -56,11 +57,12 @@ const renderElements = async(getData) => {
       
                
         
-    }else if(getData.origin.url === "" && getData.location.url != "")  {
+    }else 
+    if(getData.origin.url === "" && getData.location.url != "")  {
         const location = await fetchData(getData.location.url)
         const elemento = stringToHtml(
             
-            `<div id="container" class="selected">
+            `<div id="container" class="selected" value="${getData.id}">
                 <ul id="character-info">
                     <div id="characterPic">
                          <img src="${getData.image}" alt=""/> 
@@ -106,33 +108,28 @@ const showId = (id) => {
     
 }
 
-// const deleteChar = (charId,father) => {
-//     realId = charId-1
-//     console.log(realId)
-//     //console.log(father)
-//     //father.classList.add('selected')
-//     console.log(array.results)
-//     console.log(array.results[realId])
-//     console.log('Here i am going to delete character#: ', array.results[realId])
-//     array.results.splice(realId,1)
-//     console.log(array.results)
-//     return
-// }
 
-const clickId = async() => {
+
+const clickId = () => {
+    
     const testing1 = document.querySelectorAll('.classBtn')
     console.log(testing1)
     testing1.forEach(x => {
         x.parentElement.classList.remove('selected')
         x.addEventListener("click", () => {
-        x.parentElement.classList.add('selected')
-        //     deleteChar(x.value,x.parentElement)
-             console.log(' Character #: ' + ' ' + x.value + ' ' + 'has been deleted')
-        })
+        x.parentElement.classList.add('selected') 
+        console.log(' Character #: ' + ' ' + x.value + ' ' + 'has been deleted')
+        console.log(x.value)
+        const getSelected = document.querySelectorAll('.selected')
+        console.log(getSelected)
+        const getApp = document.getElementById('app')
+        getApp.removeChild(getSelected[0])
+       })
         console.log(x.value)
     })
     
-}          
+}
+         
         
 const controlRender = async() => {
     
@@ -142,12 +139,9 @@ const controlRender = async() => {
     
     const mapArray = await Promise.all(array.results.map(async i => {
             await renderElements(i)
-            await clickId()      
-    }))
-    
-       
+            clickId()
+        }))
 }
-         
 
 const renderApp = async() => {
     try{
