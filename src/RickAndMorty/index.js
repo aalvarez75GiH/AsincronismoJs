@@ -15,8 +15,7 @@ const fetchData = async(url_api) => {
     .catch(err => console.error(err))
 }
 
-{/* <img id="idPics" src="${getData.image}" alt=""/> */}
-{/* <input type="hidden" id="char-id-btn" value="${getData.id}"></input> */}
+
 const stringToHtml = (s) => { 
 
     const parser = new DOMParser();
@@ -24,71 +23,74 @@ const stringToHtml = (s) => {
     return doc.body.firstChild;
 
 }
-const renderElements = async(getData) => {
-    if (getData.origin.url != "" && getData.location.url != ""){
-        const origin = await fetchData(getData.origin.url)
-        const elemento = stringToHtml(
-            
-            `<div id="container" class="selected" value="${getData.id}">
-            
-                <ul id="character-info">
-                    <div id="characterPic">
-                        <img src="${getData.image}" alt=""/>
-                    </div>
-                    <li id="liName">
-                        ${getData.name}
-                    </li>
-                    <li id="liGender">
-                        ${getData.gender}
-                    </li>
-                    <li id="liDim">
-                        ${origin.dimension}
-                    </li>
-                    <li id="liBtn">
-                        <button id="btnId${getData.id}" class="classBtn" value="${getData.id}">Out</button>
-                    </li>
-                </ul>
-                
-            </div>`
-            )
-           
-        app.appendChild(elemento)
 
-      
-               
+const concatElem = (ID, image,name,gender,dimension) => {
+    const elemento = stringToHtml(
+            
+        `<div id="container" class="selected" value="${ID}">
         
-    }else 
-    if(getData.origin.url === "" && getData.location.url != "")  {
-        const location = await fetchData(getData.location.url)
-        const elemento = stringToHtml(
+            <ul id="character-info">
+                <div id="characterPic">
+                    <img src="${image}" alt=""/>
+                </div>
+                <li id="liName">
+                    ${name}
+                </li>
+                <li id="liGender">
+                    ${gender}
+                </li>
+                <li id="liDim">
+                    ${dimension}
+                </li>
+                <li id="liBtn">
+                    <button id="btnId${ID}" class="classBtn" value="${ID}">Out</button>
+                </li>
+            </ul>
             
-            `<div id="container" class="selected" value="${getData.id}">
-            
-                <ul id="character-info">
-                    <div id="characterPic">
-                        <img src="${getData.image}" alt=""/> 
-
-                    </div>
-                    <li id="liName">
-                    ${getData.name}
-                    </li>
-                    <li id="liGender">
-                        ${getData.gender}
-                    </li>
-                    <li <li id="liDim">
-                    ${location.dimension}
-                    </li>
-                    <li id="liBtn">
-                        <button id="btnId${getData.id}" class="classBtn" value="${getData.id}">Out</button>
-                    </li>
-                </ul>
-                       
-            </div>` 
+        </div>`
         )
         app.appendChild(elemento)
-        
-    } 
 }
+
+const renderElements = async(getData) => {
+    if (getData.origin.url != "" && getData.location.url != ""){
+        const root = await fetchData(getData.origin.url)
+        concatElem(getData.id,getData.image,getData.name,getData.gender,root.dimension)
+    }
+    if(getData.origin.url === "" && getData.location.url != ""){
+             root = await fetchData(getData.location.url)
+             concatElem(getData.id,getData.image,getData.name,getData.gender,root.dimension)
+    }
+        // const elemento = stringToHtml(
+            
+        //     `<div id="container" class="selected" value="${getData.id}">
+            
+        //         <ul id="character-info">
+        //             <div id="characterPic">
+        //                 <img src="${getData.image}" alt=""/>
+        //             </div>
+        //             <li id="liName">
+        //                 ${getData.name}
+        //             </li>
+        //             <li id="liGender">
+        //                 ${getData.gender}
+        //             </li>
+        //             <li id="liDim">
+        //                 ${root.dimension}
+        //             </li>
+        //             <li id="liBtn">
+        //                 <button id="btnId${getData.id}" class="classBtn" value="${getData.id}">Out</button>
+        //             </li>
+        //         </ul>
+                
+        //     </div>`
+        //     )
+           
+        // app.appendChild(elemento)
+} 
+        
+     
+
 
 const testingFunctions = () => {
     alert('testing some shits and some Functions')
