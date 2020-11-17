@@ -76,46 +76,20 @@ const renderElements = async(getData) => {
                     ${location.dimension}
                     </li>
                 </ul>
-                
                 <button id="btnId${getData.id}" class="classBtn" value="${getData.id}">test</button>
-                
             </div>` 
-            
-            
         )
         app.appendChild(elemento)
         
-        
     } 
-       
-
 }
-
-        
-        
-const controlRender = async() => {
-    
-    const app = document.getElementById('app')
-    const data = await fetchData(API)
-    array = data
-    
-    const mapArray = await Promise.all(array.results.map(async i => {
-            await renderElements(i)
-            clickId()
-            
-            
-    }))
-    
-       
-}
-         
 
 const testingFunctions = () => {
-alert('testing some shits and some Functions')
-   
-}
-
-
+    alert('testing some shits and some Functions')
+       
+    }
+    
+    
 const actionBtn = () => {
     const btn = document.getElementById('btn')
     btn.addEventListener("click",testingFunctions)
@@ -132,35 +106,48 @@ const showId = (id) => {
     
 }
 
-const deleteChar = (charId,father) => {
-    realId = charId-1
-    console.log(realId)
-    //console.log(father)
-    father.classList.add('selected')
-    console.log(array.results)
-    console.log(array.results[realId])
-    console.log('Here i am going to delete character#: ', array.results[realId])
-    array.results.splice(realId,1)
-    console.log(array.results)
-    
-}
+// const deleteChar = (charId,father) => {
+//     realId = charId-1
+//     console.log(realId)
+//     //console.log(father)
+//     //father.classList.add('selected')
+//     console.log(array.results)
+//     console.log(array.results[realId])
+//     console.log('Here i am going to delete character#: ', array.results[realId])
+//     array.results.splice(realId,1)
+//     console.log(array.results)
+//     return
+// }
 
 const clickId = async() => {
-    //const testing1 = document.getElementById('btnId17')
     const testing1 = document.querySelectorAll('.classBtn')
     console.log(testing1)
-    
-
     testing1.forEach(x => {
         x.parentElement.classList.remove('selected')
         x.addEventListener("click", () => {
-            deleteChar(x.value,x.parentElement)
-            console.log(' Character #: ' + ' ' + x.value + ' ' + 'has been deleted')
+        x.parentElement.classList.add('selected')
+        //     deleteChar(x.value,x.parentElement)
+             console.log(' Character #: ' + ' ' + x.value + ' ' + 'has been deleted')
         })
         console.log(x.value)
     })
-}   
-
+    
+}          
+        
+const controlRender = async() => {
+    
+    const app = document.getElementById('app')
+    const data = await fetchData(API)
+    array = data
+    
+    const mapArray = await Promise.all(array.results.map(async i => {
+            await renderElements(i)
+            await clickId()      
+    }))
+    
+       
+}
+         
 
 const renderApp = async() => {
     try{
