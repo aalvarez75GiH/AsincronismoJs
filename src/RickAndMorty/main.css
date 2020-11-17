@@ -59,6 +59,13 @@ img {
     
 }
 
+.classBtn{
+    color: #000;
+    background-color:#F5D5CC; 
+    border: none; 
+    width: auto;
+    height: auto;
+}
 #liName{
     background-color: #6b94c7;
     margin-top: 0.5%;
@@ -70,10 +77,15 @@ img {
 #liDim{
     background-color: #f1ffe7;
 }
+#liBtn{
+    background-color: #F5D5CC;
+    margin-top: 0.5%;
+}
+
 #characterPic{
     background-color: #fff;
     width: 100%;
-    height: 82%;
+    height: 77%;
 
 }
 

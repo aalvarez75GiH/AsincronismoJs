@@ -30,13 +30,13 @@ const renderElements = async(getData) => {
         const elemento = stringToHtml(
             
             `<div id="container" class="selected" value="${getData.id}">
+            
                 <ul id="character-info">
                     <div id="characterPic">
-                     <img src="${getData.image}" alt=""/>
-                      
+                        <img src="${getData.image}" alt=""/>
                     </div>
                     <li id="liName">
-                    ${getData.name}
+                        ${getData.name}
                     </li>
                     <li id="liGender">
                         ${getData.gender}
@@ -44,10 +44,10 @@ const renderElements = async(getData) => {
                     <li id="liDim">
                         ${origin.dimension}
                     </li>
+                    <li id="liBtn">
+                        <button id="btnId${getData.id}" class="classBtn" value="${getData.id}">Out</button>
+                    </li>
                 </ul>
-                
-                   <button id="btnId${getData.id}" class="classBtn" value="${getData.id}">test</button>
-                
                 
             </div>`
             )
@@ -63,9 +63,10 @@ const renderElements = async(getData) => {
         const elemento = stringToHtml(
             
             `<div id="container" class="selected" value="${getData.id}">
+            
                 <ul id="character-info">
                     <div id="characterPic">
-                         <img src="${getData.image}" alt=""/> 
+                        <img src="${getData.image}" alt=""/> 
 
                     </div>
                     <li id="liName">
@@ -77,8 +78,11 @@ const renderElements = async(getData) => {
                     <li <li id="liDim">
                     ${location.dimension}
                     </li>
+                    <li id="liBtn">
+                        <button id="btnId${getData.id}" class="classBtn" value="${getData.id}">Out</button>
+                    </li>
                 </ul>
-                <button id="btnId${getData.id}" class="classBtn" value="${getData.id}">test</button>
+                       
             </div>` 
         )
         app.appendChild(elemento)
@@ -98,26 +102,16 @@ const actionBtn = () => {
 
 }
 
-const showId = (id) => {
-   
-    const formId = document.querySelectorAll(`#btnId${id}`)
-     for (var i = 0; i < formId.length; i++) {
-        console.log('buttons' , formId[i]);
-        console.log('Value: ' , formId[i].value);
-    }
-    
-}
-
-
-
 const clickId = () => {
-    
     const testing1 = document.querySelectorAll('.classBtn')
     console.log(testing1)
     testing1.forEach(x => {
-        x.parentElement.classList.remove('selected')
+        const father = x.parentElement
+        const granpa = father.parentElement
+        const superGrandpa = granpa.parentElement 
+        superGrandpa.classList.remove('selected')
         x.addEventListener("click", () => {
-        x.parentElement.classList.add('selected') 
+        superGrandpa.classList.add('selected') 
         console.log(' Character #: ' + ' ' + x.value + ' ' + 'has been deleted')
         console.log(x.value)
         const getSelected = document.querySelectorAll('.selected')
