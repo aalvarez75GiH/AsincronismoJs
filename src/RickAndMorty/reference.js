@@ -418,10 +418,11 @@ const renderLogin = () =>{
                 renderOrders()            
             })
      }
-        const regButton = document.getElementById('regB')
-        regButton.addEventListener("click", renderRegister)
+     console.log('Probando autenticacion...')
+        // const regButton = document.getElementById('regB')
+        // regButton.addEventListener("click", renderRegister)
 
-    }
+}
 
 
     
