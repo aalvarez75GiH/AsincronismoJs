@@ -50,16 +50,18 @@ const renderElements = (ID, image,name,gender,dimension) => {
 }
     
     
-const refreshBtn = () => {
-    const btn = document.getElementById('btn')
-    btn.addEventListener("click", ()=>{
-        const app = document.getElementById('app')
-        const lView = document.getElementById('login-view')
-        app.removeChild(app.firstElementChild)
-        renderApp()
+// const refreshBtn = () => {
+//     const btn = document.getElementById('btn')
+//     btn.addEventListener("click", ()=>{
+//         const app = document.getElementById('app')
+//         const lView = document.getElementById('login-view')
+//         for (i = 0;i < 19; i++){
+//             app.removeChild(app.firstElementChild)
+//         }
+//         controlRender()
         
-    })
-}
+//     })
+// }
 
 const renderLogin = async() => {
     const loginV = document.getElementById('login-view') 
@@ -67,9 +69,9 @@ const renderLogin = async() => {
     app.innerHTML = loginV.innerHTML
 }
 
- const testBtn = () => {
-     const testBtn = document.getElementById('testBtn')
-     testBtn.addEventListener("click", ()=>{
+ const logOutBtn = () => {
+     const logOutBtn = document.getElementById('logOutBtn')
+     logOutBtn.addEventListener("click", ()=>{
         renderLogin()
      })
 
@@ -145,8 +147,8 @@ const renderApp = async() => {
 
 window.onload = () => {
     renderApp()
-    refreshBtn()
-    testBtn()
+    // refreshBtn()
+    logOutBtn()
 }
 
 
