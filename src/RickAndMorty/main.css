@@ -171,7 +171,23 @@ img {
     margin-top: 15px;
     cursor: pointer;
 }
-/*********************** Coming from serverless *******************************/
+/*********************** Form style *******************************/
+#test-view {
+    background-color: red;
+    width: 300px;
+    height: 300px;
+}
+#test-main {
+    background-color: green;
+    width: 180px;
+    height: 180px;
+}
+#test-p {
+    color: black;
+    background-color: orange;
+    width: 100px;
+    height: 100px;
+}
 /******************** Responsive Design ***********************/
 @media (min-width:1570px) and (max-width:2097px) {
    

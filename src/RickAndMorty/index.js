@@ -50,19 +50,46 @@ const renderElements = (ID, image,name,gender,dimension) => {
 }
     
     
-const actionBtn = () => {
+const refreshBtn = () => {
     const btn = document.getElementById('btn')
     btn.addEventListener("click", ()=>{
-        //alert('testing some shits and some Functions')
+        const app = document.getElementById('app')
+        const lView = document.getElementById('login-view')
+        app.removeChild(app.firstElementChild)
         renderApp()
+        
     })
+}
 
+const renderLogin = async() => {
+    const loginV = document.getElementById('login-view') 
+    console.log(loginV)
+    app.innerHTML = loginV.innerHTML
+}
+ const testBtn = () => {
+     const testBtn = document.getElementById('testBtn')
+     testBtn.addEventListener("click", ()=>{
+        renderLogin()
+     })
+
+ }
+
+const validateForms = () =>{
+    const email = document.getElementById('email').value
+    const password = document.getElementById('password').value
+    if (email === "guest@rickandmorty.com" && password === "1234" ){
+        alert('You are Rick and Morty...')
+    }
+    if (email != "guest@rickandmorty.com" || password != "1234" ){
+        alert('Password or Username Incorrect!!')
+        renderLogin()
+    }
 }
 
 const clickId = () => {
-    const testing1 = document.querySelectorAll('.classBtn')
-    console.log(testing1)
-    testing1.forEach(x => {
+    const gettingOuts = document.querySelectorAll('.classBtn')
+    console.log(gettingOuts)
+    gettingOuts.forEach(x => {
         const father = x.parentElement
         const granpa = father.parentElement
         const superGrandpa = granpa.parentElement 
@@ -102,6 +129,7 @@ const controlRender = async() => {
 
 const renderApp = async() => {
     try{
+        //await renderLogin()
         await controlRender()
         
     }catch(error){
@@ -111,5 +139,35 @@ const renderApp = async() => {
 
 window.onload = () => {
     renderApp()
-    actionBtn()
+    refreshBtn()
+    testBtn()
 }
+
+
+
+    // loginBtn.addEventListener("click", ()=>{
+    //     console.log('this is weird')
+    // })
+//     const loginView = document.getElementById('login-view')
+//     const loginForm = document.getElementById('login-form')
+//     const email = document.getElementById('email').value
+//     const password = document.getElementById('password').value
+//     loginForm.onsubmit = (e) => {
+//         e.preventDefault()
+//         if (email === "guest@rickandmorty.com" && password === "123456"){
+//             alert('this is working fine')
+//         }
+    
+    // const loginBtn = document.getElementById('btnLogin')
+    //console.log(loginForm)
+    // loginBtn.addEventListener("click", ()=>{
+    //     // const app = document.getElementById('app')
+    //     // console.log(app) 
+    //     // const lView = document.getElementById('login-view')
+    //     // console.log(lView)
+    //     // app.innerHTML = lView.innerHTML
+         //alert('testing Login Button')
+        //renderApp()
+    //})
+// }
+// }
