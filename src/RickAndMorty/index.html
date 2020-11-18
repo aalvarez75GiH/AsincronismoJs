@@ -17,19 +17,14 @@
     <button id="testBtn" class="testBtn">test</button>
     
 </body>
-
-<!-- <template id="login-view">
-    <form name="myForm" action="" onsubmit="return validateForms()">
-        <input id="btnLogin" type="submit" value="LogIn">
-    </form>
-    
-</template> -->
-
+<template id="testTemplate">
+    <input type="button" id="btnLogin">
+</template>
 
 <template id="login-view">
     <div class="form-main">
         <p id="form-tittle">Log In</p>
-        <form action=""  id="login-form" onsubmit="return validateForms()">
+        <form action=""  id="login-form" onsubmit="validateForms();return false">
             <div>
                 <p> Enter your email</p>
                 <input type="text" placeholder="email" id= "email">
@@ -47,6 +42,7 @@
     </div>
     
 </template>
+
 <script src="./index.js"></script>
 </html>
 

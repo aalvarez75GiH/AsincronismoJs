@@ -66,6 +66,7 @@ const renderLogin = async() => {
     console.log(loginV)
     app.innerHTML = loginV.innerHTML
 }
+
  const testBtn = () => {
      const testBtn = document.getElementById('testBtn')
      testBtn.addEventListener("click", ()=>{
@@ -74,11 +75,16 @@ const renderLogin = async() => {
 
  }
 
-const validateForms = () =>{
+const validateForms = async() =>{
     const email = document.getElementById('email').value
     const password = document.getElementById('password').value
     if (email === "guest@rickandmorty.com" && password === "1234" ){
+        console.log('You are Rick and Morty...')
         alert('You are Rick and Morty...')
+        const app = document.getElementById('app')
+        const lView = document.getElementById('login-view')
+        app.removeChild(app.firstElementChild)
+        controlRender()
     }
     if (email != "guest@rickandmorty.com" || password != "1234" ){
         alert('Password or Username Incorrect!!')
@@ -129,8 +135,8 @@ const controlRender = async() => {
 
 const renderApp = async() => {
     try{
-        //await renderLogin()
-        await controlRender()
+        await renderLogin()
+        
         
     }catch(error){
         console.error(error)
